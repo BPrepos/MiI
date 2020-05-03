@@ -58,15 +58,16 @@ def kernel_estimator(kernel_type, tab, hn, N):
 
 
 def task4(M, L, N):
-    x = np.linspace(-5,5, M)
-    h_tab = np.linspace(0.1, 0.2, 10)
+    x = np.linspace(-2,2, M)
+    h_tab = np.linspace(0.1, 5, 40)
     final_tab = []
     for h in range(len(h_tab)):
         err = 0
         for l in range(L):
             generated_tab = np.random.normal(0, 1, N)
             for m in range(M):
-                err += (1/(L*M))*pow((1/(N*h_tab[h])*(kernel_estimator_for_single("rectangular", generated_tab, h_tab[h], x[m])))-normal_dist_for_x(x[m],0,1) ,2)
+                err += (1/(L*M)) * pow(kernel_estimator_for_single("rectangular", generated_tab, h_tab[h], x[m]) - normal_dist_for_x(x[m], 0, 1), 2)
+                #err += (1/(L*M)) *
         final_tab.append(err)
     return h_tab, final_tab
 
