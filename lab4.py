@@ -84,6 +84,24 @@ def dn(tab):
         np.absolute(tmp)
     return max(tmp)
 
+def dn_for_N():
+    final_tab = []
+    x = np.linspace(0,1,500)
+    ntab = np.linspace(20, 1000, 50).astype(int)
+    print(ntab)
+    for n in range(len(ntab)):
+        tmp = []
+        tabx = eliminate41(ntab[n])
+        for i in range(len(x)):
+            tmp.append(emp_dist_42(tabx, x[i])-calculated_dist(x[i]))
+        np.absolute(tmp)
+        final_tab.append(max(tmp))
+    return ntab, final_tab
+
+
+
+
+
 
 def get_44_data():
     list = []
@@ -98,8 +116,9 @@ def var_of_est(N):
     tmp = []
     x = np.linspace(-2,2,N)
     for i in range(len(x)):
-        tmp.append((1/N)*calculated_dist(x[i]*(1-calculated_dist(x[i]))))
-    return tmp
+        #tmp.append((1/N)*calculated_dist(x[i])*(1-calculated_dist(x[i])))
+        tmp.append((1/N)*emp_dist_42(eliminate41(100),x[i])*(1-emp_dist_42(eliminate41(100),x[i])))
+    return x, tmp
 
 
 if __name__ == "__main__":
@@ -118,6 +137,28 @@ if __name__ == "__main__":
     ax2[2].plot(normal05x,normal05y)
     cauchy01x, cauchy01y = plot_emp_dist(eliminate_cauchy_upgraded(1000),-5,5,1000)
     ax2[3].plot(cauchy01x,cauchy01y)
+    plt.figure(3)
+    xdn, ydn = dn_for_N()
+    plt.plot(xdn,ydn)
+    fig3, ax3 = plt.subplots(2,2)
+    x1, y1 = plot_emp_dist(get_44_data()[:10],-5, 5, 1000)
+    x2, y2 = plot_emp_dist(get_44_data()[:50],-5, 5, 1000)
+    x3, y3 = plot_emp_dist(get_44_data()[:100],-5, 5, 1000)
+    x4, y4 = plot_emp_dist(get_44_data()[:500],-5, 5, 1000)
+    ax3[0][0].plot(x1, y1)
+    ax3[0][0].set_title('n=10')
+    ax3[0][1].plot(x2, y2)
+    ax3[0][1].set_title('n=50')
+    ax3[1][0].plot(x3, y3)
+    ax3[1][0].set_title('n=100')
+    ax3[1][1].plot(x4, y4)
+    ax3[1][1].set_title('n=500')
+    plt.figure(5)
+    x5, y5 = var_of_est(500)
+    plt.plot(x5, y5)
+
+
+
 
 
     plt.show()

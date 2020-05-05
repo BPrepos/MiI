@@ -82,7 +82,7 @@ def task4(M, L, N):
 
 if __name__ == "__main__":
     N = 200
-    h = 0.5
+    h = 1
     M = 100
     L = 10
     normal_tab = normal_generator(N)
@@ -91,24 +91,33 @@ if __name__ == "__main__":
     fig1, ax1 = plt.subplots(3)
     x1, y1 = kernel_estimator("rectangular", normal_tab, 0.4, N)
     ax1[0].plot(x1, y1)
+    ax1[0].set_title('h = 0.4')
     x2, y2 = kernel_estimator("rectangular", normal_tab, 1, N)
     ax1[1].plot(x2, y2)
+    ax1[1].set_title('h = 1')
     x3, y3 = kernel_estimator("rectangular", normal_tab, 4, N)
     ax1[2].plot(x3, y3)
+    ax1[2].set_title('h = 4')
     fig2, ax2 = plt.subplots(3)
     x4, y4 = kernel_estimator("rectangular", normal_tab, h, N)
     ax2[0].plot(x4, y4)
+    ax2[0].set_title('Rozkład normalny - jądro prostokątne')
     x5, y5 = kernel_estimator("boscar", normal_tab, h, N)
     ax2[1].plot(x5, y5)
+    ax2[1].set_title('Rozkład normalny - jądro boscar')
     x6, y6 = kernel_estimator("epan", normal_tab, h, N)
     ax2[2].plot(x6, y6)
+    ax2[2].set_title('Rozkład normalny - jądro epanechnikova')
     fig3, ax3 = plt.subplots(3)
     x7, y7 = kernel_estimator("rectangular", random_tab, h, N)
     ax3[0].plot(x7, y7)
+    ax3[0].set_title('Rozkład jednostajny - jądro prostokątne')
     x8, y8 = kernel_estimator("boscar", random_tab, h, N)
     ax3[1].plot(x8, y8)
+    ax3[1].set_title('Rozkład jednostajny - jądro boscar')
     x9, y9 = kernel_estimator("epan", random_tab, h, N)
     ax3[2].plot(x9, y9)
+    ax3[2].set_title('Rozkład jednostajny - jądro epanechnikova')
     plt.figure(4)
     x10, y10 = task4(M,L,N)
     plt.plot(x10, y10)
