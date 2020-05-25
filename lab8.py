@@ -28,7 +28,6 @@ if __name__ == "__main__":
     #estimate a
     a_est = np.dot(np.dot(np.linalg.inv(np.dot(Xn.transpose(),Xn)),Xn.transpose()),Yn)
     #error
-    tab_err = 0
     #cov
     cov = var * np.linalg.inv(np.dot(Xn.transpose(),Xn))
     plt.pcolormesh(cov)
@@ -37,7 +36,6 @@ if __name__ == "__main__":
     for l in range(L):
         for i in range(N):
             Zn[l][i] = np.random.normal(0, var)
-
     for n in tab_n:
         x_tmp = Xn[:n,:]
         error = 0
