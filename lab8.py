@@ -5,8 +5,8 @@ from labgotowe import random
 D = 10
 N = 200
 L = 10
-var = 1
-tab_n = np.linspace(16, 100, 42).astype(int)
+var = 0.1
+tab_n = np.linspace(30, 130, 100).astype(int)
 
 
 if __name__ == "__main__":
@@ -27,6 +27,7 @@ if __name__ == "__main__":
     Yn = np.add(Xn.dot(a), Zn)
     #estimate a
     a_est = np.dot(np.dot(np.linalg.inv(np.dot(Xn.transpose(),Xn)),Xn.transpose()),Yn)
+    print(a_est)
     #error
     #cov
     cov = var * np.linalg.inv(np.dot(Xn.transpose(),Xn))

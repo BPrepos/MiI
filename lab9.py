@@ -5,10 +5,10 @@ from labgotowe import random
 
 D = 10
 N = 200
-L = 10
-var = 1
+L = 20
+var = 0.1
 tab_n = np.linspace(16, 100, 42).astype(int)
-b = 0.5
+b = 0.9
 
 
 if __name__ == "__main__":
@@ -39,9 +39,12 @@ if __name__ == "__main__":
                 R[i][j] = (1+pow(b,2))*var
             elif np.absolute(i-j)==1:
                 R[i][j] = b*var
+    print(R)
     #cova
     cova = np.dot(np.dot(np.dot(np.dot(np.linalg.inv(np.dot(Xn.transpose(),Xn)),Xn.transpose()), R),Xn),np.linalg.inv(np.dot(Xn.transpose(),Xn)))
     error_tab = []
+    plt.figure(1)
+    plt.pcolor(cova)
     Zn = np.zeros((L,N),dtype=float)
     tab_epsilon = np.zeros((L,N+1),dtype=float)
     for l in range(L):
